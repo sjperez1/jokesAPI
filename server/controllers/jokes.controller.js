@@ -13,6 +13,14 @@ module.exports.allJokes = (req, res)=>{
         .catch(err=> res.json(err))
 }
 
+// Get random
+module.exports.randomJokes = (req, res)=>{
+    Joke.findRandom()
+    // jokes is an array
+        .then(jokes => res.json(jokes[Math.floor(Math.random()*jokes.length)]))
+        .catch(err=> res.json(err))
+}
+
 // Get one
 module.exports.oneJoke = (req, res)=>{
     // get id from params. The part after params. is what needs to match in the route, so id here means it has to be id in the route.
